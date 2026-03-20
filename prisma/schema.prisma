@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// 管理员用户
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+}
+
+// 调研记录
+model ResearchRecord {
+  id          String   @id @default(cuid())
+  area        String   // 区域：蔡甸/洪山/黄陂/新洲
+  subject     String   // 受访主体名称
+  type        String   // 类型：合作社/种植户/文旅经营者/返乡创业者
+  contact     String?  // 联系方式
+  date        DateTime // 走访日期
+  issues      String   // 发现问题（JSON数组）
+  notes       String?  // 备注
+  hasIntent   Boolean  @default(false) // 是否表达服务意向
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// 服务案例
+model ServiceCase {
+  id          String   @id @default(cuid())
+  title       String
+  type        String   // 地标保护/合同纠纷/安全合规/维权协助/法律咨询
+  area        String
+  description String
+  result      String?  // 处理结果
+  status      String   @default("pending") // pending/processing/resolved
+  isPublic    Boolean  @default(false) // 是否展示在前台
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// 维权申请
+model RightsApplication {
+  id          String   @id @default(cuid())
+  name        String
+  phone       String
+  area        String
+  type        String   // 侵权类型
+  description String
+  evidence    String?  // 证据描述
+  status      String   @default("pending") // pending/processing/resolved
+  adminNote   String?  // 处理备注
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// 工具使用记录（匿名统计）
+model ToolUsage {
+  id        String   @id @default(cuid())
+  tool      String   // 工具名称
+  action    String   // 操作：view/download/check
+  createdAt DateTime @default(now())
+}
+
+// 驿站活动
+model StationEvent {
+  id          String   @id @default(cuid())
+  title       String
+  area        String
+  address     String
+  date        DateTime
+  startTime   String
+  endTime     String
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
