@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Shield, FileCheck, Home, Scale, ArrowUpRight } from "lucide-react";
+import { Shield, FileCheck, Scale, ArrowUpRight } from "lucide-react";
 
 const services = [
   {
@@ -16,7 +16,7 @@ const services = [
   {
     n: "02",
     icon: FileCheck,
-    title: "乡村合规体检服务",
+    title: "乡村合规自检服务",
     desc: "在线审查土地流转、用工、购销合同，一键生成合规文书。针对民宿、采摘园等文旅项目开展安全责任、消保专项指导。",
     href: "/toolkit",
     cta: "使用自检工具",
@@ -25,16 +25,6 @@ const services = [
   },
   {
     n: "03",
-    icon: Home,
-    title: "流动法治驿站",
-    desc: "在黄陂、新洲等乡村旅游热点定期设点，现场提供法律咨询、纠纷调解协助、合同公证预约，开展趣味普法宣传。",
-    href: "#station",
-    cta: "查看驿站安排",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b",
-    tags: ["线下驻点", "法律咨询", "纠纷调解"],
-  },
-  {
-    n: "04",
     icon: Scale,
     title: "维权绿色通道",
     desc: "对接市场监管、农业农村部门，快速响应侵权投诉。协助农户低成本收集维权证据，重大案件推动公益诉讼形成司法示范。",

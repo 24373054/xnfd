@@ -22,7 +22,6 @@ function MetricsChart() {
     if (!ref.current || typeof window === "undefined") return;
     let cleanup: (() => void) | undefined;
 
-    // 按需引入，只加载 pie chart 相关模块，体积从 ~1MB 降到 ~200KB
     Promise.all([
       import("echarts/core"),
       import("echarts/charts"),
@@ -82,9 +81,9 @@ function MetricsChart() {
 }
 
 export function MetricsSection({ stats }: MetricsProps) {
-  const kpis = [
+  const kpis: { n: number; unit: string; label: string; sub: string; href?: string }[] = [
     { n: stats.researchCount || 47, unit: "家", label: "已走访调研主体", sub: "覆盖蔡甸、洪山、黄陂三区" },
-    { n: 89, unit: "份", label: "有效调研问卷", sub: "89%表达明确服务需求" },
+    { n: 89, unit: "份", label: "有效调研问卷", sub: "89%表达明确服务需求", href: "https://v.wjx.cn/vm/YZrWCYf.aspx" },
     { n: 3, unit: "家", label: "已签意向合作社", sub: "蔡甸莲藕2家、洪山菜薹协会1家" },
     { n: stats.caseCount || 11, unit: "件", label: "收集典型案例", sub: "地标侵权7件、合同纠纷3件" },
   ];
@@ -129,17 +128,39 @@ export function MetricsSection({ stats }: MetricsProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* KPI cards */}
           <div className="grid grid-cols-2 gap-4">
-            {kpis.map((k) => (
-              <div key={k.label} className="glass rounded-2xl p-6 card-hover group">
-                <div className="flex items-baseline gap-1 mb-2">
-                  <span className="text-4xl font-black text-white">{k.n}</span>
-                  <span className="text-green-400 text-lg font-bold">{k.unit}</span>
+            {kpis.map((k) => {
+              const inner = (
+                <>
+                  <div className="flex items-baseline gap-1 mb-2">
+                    <span className="text-4xl font-black text-white">{k.n}</span>
+                    <span className="text-green-400 text-lg font-bold">{k.unit}</span>
+                  </div>
+                  <div className="text-sm font-semibold text-white/80 mb-1">{k.label}</div>
+                  <div className="text-xs text-white/50 leading-relaxed">{k.sub}</div>
+                  {k.href && (
+                    <div className="mt-2 text-[11px] text-green-400/70 group-hover:text-green-400 transition-colors">
+                      点击查看问卷 →
+                    </div>
+                  )}
+                  <div className="mt-4 h-px bg-gradient-to-r from-green-500/30 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                </>
+              );
+              return k.href ? (
+                <a
+                  key={k.label}
+                  href={k.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="glass rounded-2xl p-6 card-hover group block border border-green-500/10 hover:border-green-500/30 transition-colors"
+                >
+                  {inner}
+                </a>
+              ) : (
+                <div key={k.label} className="glass rounded-2xl p-6 card-hover group">
+                  {inner}
                 </div>
-                <div className="text-sm font-semibold text-white/80 mb-1">{k.label}</div>
-                <div className="text-xs text-white/50 leading-relaxed">{k.sub}</div>
-                <div className="mt-4 h-px bg-gradient-to-r from-green-500/30 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Chart */}
