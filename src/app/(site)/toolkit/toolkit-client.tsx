@@ -144,15 +144,16 @@ export function ToolkitClient() {
     return (
       <div className="max-w-3xl">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-bold text-white">{editorTitle}</h2>
-          <button onClick={() => setView("list")} className="flex items-center gap-2 px-4 py-2 glass rounded-md text-sm text-white/60 hover:text-white transition-colors">
+          <h2 className="text-2xl font-bold" style={{ color: "var(--text-primary)" }}>{editorTitle}</h2>
+          <button onClick={() => setView("list")} className="flex items-center gap-2 px-4 py-2 glass rounded-md text-sm transition-colors" style={{ color: "var(--text-muted)" }}>
             <ArrowLeft className="w-4 h-4" /> 返回工具包
           </button>
         </div>
         <textarea
           value={editorContent}
           onChange={(e) => setEditorContent(e.target.value)}
-          className="w-full min-h-[500px] glass rounded-lg p-5 font-mono text-sm text-white/80 resize-y focus:outline-none focus:border-green-500/50 border border-white/10 bg-transparent leading-relaxed"
+          className="w-full min-h-[500px] glass rounded-lg p-5 font-mono text-sm resize-y focus:outline-none leading-relaxed"
+          style={{ color: "var(--text-primary)", border: "1px solid var(--glass-border)", background: "transparent" }}
         />
         <div className="flex gap-3 mt-5 flex-wrap">
           <button
@@ -174,24 +175,25 @@ export function ToolkitClient() {
         {/* AI Fill Modal */}
         {fillOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-            <div className="w-full max-w-md glass rounded-xl p-6 mx-4 border border-white/10">
+            <div className="w-full max-w-md glass rounded-xl p-6 mx-4" style={{ border: "1px solid var(--glass-border)" }}>
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                   <Wand2 className="w-4 h-4 text-green-400" />
-                  <span className="font-semibold text-white text-sm">AI 智能填充</span>
+                  <span className="font-semibold text-sm" style={{ color: "var(--text-primary)" }}>AI 智能填充</span>
                   <ModelBadge />
                 </div>
-                <button onClick={() => setFillOpen(false)} className="text-white/30 hover:text-white">
+                <button onClick={() => setFillOpen(false)} style={{ color: "var(--text-muted)" }}>
                   <X className="w-4 h-4" />
                 </button>
               </div>
-              <p className="text-xs text-white/40 mb-3">描述你的具体情况，AI 将自动填写合同中的空白项</p>
+              <p className="text-xs mb-3" style={{ color: "var(--text-muted)" }}>描述你的具体情况，AI 将自动填写合同中的空白项</p>
               <textarea
                 value={fillDesc}
                 onChange={e => setFillDesc(e.target.value)}
                 rows={4}
                 placeholder="例如：甲方是武汉蔡甸莲藕合作社，乙方是某超市，采购蔡甸莲藕500公斤，单价8元/公斤，交货日期2025年3月1日..."
-                className="w-full bg-white/5 border border-white/10 rounded-md p-3 text-sm text-white/80 resize-none focus:outline-none focus:border-green-500/50 placeholder-white/20"
+                className="w-full rounded-md p-3 text-sm resize-none focus:outline-none"
+                style={{ color: "var(--text-primary)", background: "var(--glass-bg)", border: "1px solid var(--glass-border)" }}
               />
               <div className="flex gap-3 mt-4">
                 <button
@@ -201,7 +203,7 @@ export function ToolkitClient() {
                 >
                   {fillLoading ? <><Loader2 className="w-4 h-4 animate-spin" /> 填充中...</> : <><Sparkles className="w-4 h-4" /> 开始填充</>}
                 </button>
-                <button onClick={() => setFillOpen(false)} className="px-4 py-2.5 glass rounded-md text-sm text-white/50 hover:text-white">
+                <button onClick={() => setFillOpen(false)} className="px-4 py-2.5 glass rounded-md text-sm" style={{ color: "var(--text-muted)" }}>
                   取消
                 </button>
               </div>
@@ -217,25 +219,26 @@ export function ToolkitClient() {
     return (
       <div className="max-w-3xl">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-bold text-white">合同智能审查</h2>
-          <button onClick={() => setView("list")} className="flex items-center gap-2 px-4 py-2 glass rounded-md text-sm text-white/60 hover:text-white transition-colors">
+          <h2 className="text-2xl font-bold" style={{ color: "var(--text-primary)" }}>合同智能审查</h2>
+          <button onClick={() => setView("list")} className="flex items-center gap-2 px-4 py-2 glass rounded-md text-sm transition-colors" style={{ color: "var(--text-muted)" }}>
             <ArrowLeft className="w-4 h-4" /> 返回工具包
           </button>
         </div>
         <div className="glass rounded-lg p-6 mb-5">
           <div className="flex items-center gap-2 mb-3">
-            <p className="text-sm text-white/50">将合同文本粘贴到下方，AI 将自动检测条款漏洞和风险点：</p>
+            <p className="text-sm" style={{ color: "var(--text-muted)" }}>将合同文本粘贴到下方，AI 将自动检测条款漏洞和风险点：</p>
             <ModelBadge />
           </div>
           <textarea
             value={contractText}
             onChange={e => setContractText(e.target.value)}
             rows={12}
-            className="w-full bg-white/5 border border-white/10 rounded-md p-4 text-sm text-white/80 font-mono resize-y focus:outline-none focus:border-green-500/50 leading-relaxed"
+            className="w-full rounded-md p-4 text-sm font-mono resize-y focus:outline-none leading-relaxed"
+            style={{ color: "var(--text-primary)", background: "var(--glass-bg)", border: "1px solid var(--glass-border)" }}
             placeholder="请将合同全文粘贴到此处..."
           />
           <div className="flex items-center justify-between mt-4">
-            <span className="text-xs text-white/20">{contractText.length} 字</span>
+            <span className="text-xs" style={{ color: "var(--text-muted)" }}>{contractText.length} 字</span>
             <button
               onClick={analyzeContract}
               disabled={!contractText.trim() || contractLoading}
@@ -249,8 +252,8 @@ export function ToolkitClient() {
         {contractResult.length > 0 && (
           <div className="glass rounded-lg overflow-hidden">
             <div className="px-5 py-3 border-b border-white/5 flex items-center gap-3">
-              <span className="text-sm font-semibold text-white">审查结果</span>
-              <span className="text-xs text-white/30">
+              <span className="text-sm font-semibold" style={{ color: "var(--text-primary)" }}>审查结果</span>
+              <span className="text-xs" style={{ color: "var(--text-muted)" }}>
                 {contractResult.filter(r => r.level === "error").length} 个风险 ·{" "}
                 {contractResult.filter(r => r.level === "warn").length} 个建议 ·{" "}
                 {contractResult.filter(r => r.level === "ok").length} 项合规
@@ -271,7 +274,7 @@ export function ToolkitClient() {
               </div>
             ))}
             <div className="px-5 py-3 border-t border-white/5">
-              <p className="text-xs text-white/20">如需专业法律意见，请拨打咨询热线：027-87218899</p>
+              <p className="text-xs" style={{ color: "var(--text-muted)" }}>如需专业法律意见，请拨打咨询热线：027-87218899</p>
             </div>
           </div>
         )}
@@ -284,8 +287,8 @@ export function ToolkitClient() {
     return (
       <div className="max-w-3xl">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-bold text-white">文旅项目安全自查</h2>
-          <button onClick={() => setView("list")} className="flex items-center gap-2 px-4 py-2 glass rounded-md text-sm text-white/60 hover:text-white transition-colors">
+          <h2 className="text-2xl font-bold" style={{ color: "var(--text-primary)" }}>文旅项目安全自查</h2>
+          <button onClick={() => setView("list")} className="flex items-center gap-2 px-4 py-2 glass rounded-md text-sm transition-colors" style={{ color: "var(--text-muted)" }}>
             <ArrowLeft className="w-4 h-4" /> 返回工具包
           </button>
         </div>
@@ -293,8 +296,8 @@ export function ToolkitClient() {
           {SAFETY_ITEMS.map(group => (
             <div key={group.category} className="glass rounded-lg overflow-hidden">
               <div className="px-5 py-3 border-b border-white/5 flex items-center justify-between">
-                <span className="text-sm font-semibold text-white">{group.category}</span>
-                <span className="text-xs text-white/30">
+                <span className="text-sm font-semibold" style={{ color: "var(--text-primary)" }}>{group.category}</span>
+                <span className="text-xs" style={{ color: "var(--text-muted)" }}>
                   {group.items.filter(item => safetyChecked[item.id]).length}/{group.items.length}
                 </span>
               </div>
@@ -307,7 +310,7 @@ export function ToolkitClient() {
                     className="mt-0.5 w-4 h-4 accent-green-500 shrink-0"
                   />
                   <div>
-                    <span className="text-sm text-white/80">{item.text}</span>
+                    <span className="text-sm" style={{ color: "var(--text-primary)" }}>{item.text}</span>
                     {item.risk && <p className="text-xs text-amber-400/70 mt-0.5">{item.risk}</p>}
                   </div>
                 </label>
@@ -316,7 +319,7 @@ export function ToolkitClient() {
           ))}
         </div>
         <div className="mt-6 flex items-center justify-between">
-          <span className="text-sm text-white/40">已完成 {safetyScore}/{SAFETY_ITEMS.flatMap(g => g.items).length} 项</span>
+          <span className="text-sm" style={{ color: "var(--text-muted)" }}>已完成 {safetyScore}/{SAFETY_ITEMS.flatMap(g => g.items).length} 项</span>
           <button
             onClick={() => {
               const unchecked = SAFETY_ITEMS.flatMap(g => g.items).filter(i => !safetyChecked[i.id]).map(i => i.text);
@@ -342,18 +345,18 @@ export function ToolkitClient() {
     return (
       <div className="max-w-3xl">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-bold text-white">安全自查报告</h2>
-          <button onClick={() => setView("safety-check")} className="flex items-center gap-2 px-4 py-2 glass rounded-md text-sm text-white/60 hover:text-white transition-colors">
+          <h2 className="text-2xl font-bold" style={{ color: "var(--text-primary)" }}>安全自查报告</h2>
+          <button onClick={() => setView("safety-check")} className="flex items-center gap-2 px-4 py-2 glass rounded-md text-sm transition-colors" style={{ color: "var(--text-muted)" }}>
             <ArrowLeft className="w-4 h-4" /> 返回自查
           </button>
         </div>
         <div className="glass rounded-lg p-6 mb-5 flex items-center gap-6">
           <div className={cn("text-5xl font-black", score >= 80 ? "text-green-400" : score >= 60 ? "text-amber-400" : "text-red-400")}>{score}%</div>
           <div>
-            <div className="text-white font-semibold mb-1">
+            <div className="font-semibold mb-1" style={{ color: "var(--text-primary)" }}>
               {score >= 80 ? "合规状况良好" : score >= 60 ? "存在一定风险" : "存在较多安全隐患"}
             </div>
-            <div className="text-sm text-white/40">已完成 {checked.length} 项，待整改 {unchecked.length} 项</div>
+            <div className="text-sm" style={{ color: "var(--text-muted)" }}>已完成 {checked.length} 项，待整改 {unchecked.length} 项</div>
           </div>
         </div>
         {unchecked.length > 0 && (
@@ -363,7 +366,7 @@ export function ToolkitClient() {
               <div key={item.id} className="flex items-start gap-3 px-5 py-3 border-b border-white/5 last:border-0">
                 <XCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-400" />
                 <div>
-                  <span className="text-sm text-white/80">{item.text}</span>
+                  <span className="text-sm" style={{ color: "var(--text-primary)" }}>{item.text}</span>
                   {item.risk && <p className="text-xs text-amber-400/70 mt-0.5">{item.risk}</p>}
                 </div>
               </div>
@@ -376,16 +379,16 @@ export function ToolkitClient() {
           <div className="glass rounded-lg overflow-hidden mb-4">
             <div className="px-5 py-3 border-b border-white/5 flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-green-400" />
-              <span className="text-sm font-semibold text-white">AI 整改建议</span>
+              <span className="text-sm font-semibold" style={{ color: "var(--text-primary)" }}>AI 整改建议</span>
               <ModelBadge />
             </div>
             <div className="px-5 py-4">
               {safetyAdviceLoading ? (
-                <div className="flex items-center gap-2 text-sm text-white/40">
+                <div className="flex items-center gap-2 text-sm" style={{ color: "var(--text-muted)" }}>
                   <Loader2 className="w-4 h-4 animate-spin text-green-400" /> AI 正在生成个性化整改建议...
                 </div>
               ) : safetyAdvice ? (
-                <p className="text-sm text-white/75 leading-relaxed whitespace-pre-wrap">{safetyAdvice}</p>
+                <p className="text-sm leading-relaxed whitespace-pre-wrap" style={{ color: "var(--text-secondary)" }}>{safetyAdvice}</p>
               ) : (
                 <button
                   onClick={() => fetchSafetyAdvice(unchecked.map(i => i.text))}
@@ -398,7 +401,7 @@ export function ToolkitClient() {
           </div>
         )}
 
-        <div className="glass rounded-lg p-4 text-xs text-white/30">
+        <div className="glass rounded-lg p-4 text-xs" style={{ color: "var(--text-muted)" }}>
           如需专业安全合规指导，请联系：027-87218899 或 fadun@xingnong.org.cn
         </div>
       </div>
@@ -410,8 +413,8 @@ export function ToolkitClient() {
     return (
       <div className="max-w-3xl">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-bold text-white">地理标志合规自查</h2>
-          <button onClick={() => setView("list")} className="flex items-center gap-2 px-4 py-2 glass rounded-md text-sm text-white/60 hover:text-white transition-colors">
+          <h2 className="text-2xl font-bold" style={{ color: "var(--text-primary)" }}>地理标志合规自查</h2>
+          <button onClick={() => setView("list")} className="flex items-center gap-2 px-4 py-2 glass rounded-md text-sm transition-colors" style={{ color: "var(--text-muted)" }}>
             <ArrowLeft className="w-4 h-4" /> 返回工具包
           </button>
         </div>
@@ -419,8 +422,8 @@ export function ToolkitClient() {
           {GI_ITEMS.map(group => (
             <div key={group.category} className="glass rounded-lg overflow-hidden">
               <div className="px-5 py-3 border-b border-white/5 flex items-center justify-between">
-                <span className="text-sm font-semibold text-white">{group.category}</span>
-                <span className="text-xs text-white/30">
+                <span className="text-sm font-semibold" style={{ color: "var(--text-primary)" }}>{group.category}</span>
+                <span className="text-xs" style={{ color: "var(--text-muted)" }}>
                   {group.items.filter(item => giChecked[item.id]).length}/{group.items.length}
                 </span>
               </div>
@@ -433,7 +436,7 @@ export function ToolkitClient() {
                     className="mt-0.5 w-4 h-4 accent-green-500 shrink-0"
                   />
                   <div>
-                    <span className="text-sm text-white/80">{item.text}</span>
+                    <span className="text-sm" style={{ color: "var(--text-primary)" }}>{item.text}</span>
                     {item.risk && <p className="text-xs text-amber-400/70 mt-0.5">{item.risk}</p>}
                   </div>
                 </label>
@@ -442,7 +445,7 @@ export function ToolkitClient() {
           ))}
         </div>
         <div className="mt-6 flex items-center justify-between">
-          <span className="text-sm text-white/40">已完成 {giScore}/{GI_ITEMS.flatMap(g => g.items).length} 项</span>
+          <span className="text-sm" style={{ color: "var(--text-muted)" }}>已完成 {giScore}/{GI_ITEMS.flatMap(g => g.items).length} 项</span>
           <button
             onClick={() => {
               const unchecked = GI_ITEMS.flatMap(g => g.items).filter(i => !giChecked[i.id]).map(i => i.text);
@@ -468,18 +471,18 @@ export function ToolkitClient() {
     return (
       <div className="max-w-3xl">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-bold text-white">地理标志合规报告</h2>
-          <button onClick={() => setView("gi-check")} className="flex items-center gap-2 px-4 py-2 glass rounded-md text-sm text-white/60 hover:text-white transition-colors">
+          <h2 className="text-2xl font-bold" style={{ color: "var(--text-primary)" }}>地理标志合规报告</h2>
+          <button onClick={() => setView("gi-check")} className="flex items-center gap-2 px-4 py-2 glass rounded-md text-sm transition-colors" style={{ color: "var(--text-muted)" }}>
             <ArrowLeft className="w-4 h-4" /> 返回自查
           </button>
         </div>
         <div className="glass rounded-lg p-6 mb-5 flex items-center gap-6">
           <div className={cn("text-5xl font-black", score >= 80 ? "text-green-400" : score >= 60 ? "text-amber-400" : "text-red-400")}>{score}%</div>
           <div>
-            <div className="text-white font-semibold mb-1">
+            <div className="font-semibold mb-1" style={{ color: "var(--text-primary)" }}>
               {score >= 80 ? "地标使用合规" : score >= 60 ? "存在合规风险" : "存在违规使用风险"}
             </div>
-            <div className="text-sm text-white/40">已完成 {checked.length} 项，待整改 {unchecked.length} 项</div>
+            <div className="text-sm" style={{ color: "var(--text-muted)" }}>已完成 {checked.length} 项，待整改 {unchecked.length} 项</div>
           </div>
         </div>
         {unchecked.length > 0 && (
@@ -489,7 +492,7 @@ export function ToolkitClient() {
               <div key={item.id} className="flex items-start gap-3 px-5 py-3 border-b border-white/5 last:border-0">
                 <XCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-400" />
                 <div>
-                  <span className="text-sm text-white/80">{item.text}</span>
+                  <span className="text-sm" style={{ color: "var(--text-primary)" }}>{item.text}</span>
                   {item.risk && <p className="text-xs text-amber-400/70 mt-0.5">{item.risk}</p>}
                 </div>
               </div>
@@ -502,16 +505,16 @@ export function ToolkitClient() {
           <div className="glass rounded-lg overflow-hidden mb-4">
             <div className="px-5 py-3 border-b border-white/5 flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-green-400" />
-              <span className="text-sm font-semibold text-white">AI 整改建议</span>
+              <span className="text-sm font-semibold" style={{ color: "var(--text-primary)" }}>AI 整改建议</span>
               <ModelBadge />
             </div>
             <div className="px-5 py-4">
               {giAdviceLoading ? (
-                <div className="flex items-center gap-2 text-sm text-white/40">
+                <div className="flex items-center gap-2 text-sm" style={{ color: "var(--text-muted)" }}>
                   <Loader2 className="w-4 h-4 animate-spin text-green-400" /> AI 正在生成个性化整改建议...
                 </div>
               ) : giAdvice ? (
-                <p className="text-sm text-white/75 leading-relaxed whitespace-pre-wrap">{giAdvice}</p>
+                <p className="text-sm leading-relaxed whitespace-pre-wrap" style={{ color: "var(--text-secondary)" }}>{giAdvice}</p>
               ) : (
                 <button
                   onClick={() => fetchGiAdvice(unchecked.map(i => i.text))}
@@ -524,7 +527,7 @@ export function ToolkitClient() {
           </div>
         )}
 
-        <div className="glass rounded-lg p-4 text-xs text-white/30">
+        <div className="glass rounded-lg p-4 text-xs" style={{ color: "var(--text-muted)" }}>
           如需专业地标合规指导，请联系：027-87218899 或 fadun@xingnong.org.cn
         </div>
       </div>
@@ -539,11 +542,11 @@ export function ToolkitClient() {
         return (
           <div key={t.id} className="glass rounded-lg overflow-hidden card-hover group flex flex-col">
             <div className="p-6 flex-1">
-              <div className="w-11 h-11 rounded-md bg-green-500/10 border border-green-500/20 flex items-center justify-center mb-5 group-hover:bg-green-500/20 group-hover:border-green-500/40 transition-all duration-300">
-                <Icon className="w-5 h-5 text-green-400" />
+              <div className="w-11 h-11 rounded-md flex items-center justify-center mb-5 group-hover:opacity-80 transition-all duration-300" style={{ background: "color-mix(in srgb, var(--accent) 10%, transparent)", border: "1px solid color-mix(in srgb, var(--accent) 20%, transparent)" }}>
+                <Icon className="w-5 h-5" style={{ color: "var(--accent)" }} />
               </div>
-              <h3 className="font-bold text-white mb-2">{t.title}</h3>
-              <p className="text-sm text-white/40 leading-relaxed">{t.desc}</p>
+              <h3 className="font-bold mb-2" style={{ color: "var(--text-primary)" }}>{t.title}</h3>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>{t.desc}</p>
             </div>
             <div className="px-6 pb-6 flex flex-wrap gap-2">
               {t.actions.map((a) => (

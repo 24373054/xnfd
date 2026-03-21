@@ -6,7 +6,6 @@ const researchData = [
     title: "蔡甸莲藕",
     subtitle: "地标保护现状",
     tag: "走访3家合作社 · 2026年3月",
-    color: "green",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64",
     items: [
       { status: "done", text: `已注册"蔡甸莲藕"地理标志证明商标（国家知识产权局）` },
@@ -22,7 +21,6 @@ const researchData = [
     title: "洪山菜薹",
     subtitle: "地标保护现状",
     tag: "走访8户种植户 · 2026年3月",
-    color: "green",
     image: "https://images.unsplash.com/photo-1540420773420-3366772f4999",
     items: [
       { status: "done", text: "洪山菜薹获批国家地理标志保护产品，保护范围明确" },
@@ -38,7 +36,6 @@ const researchData = [
     title: "意向客户数据",
     subtitle: "问卷+访谈 · 有效样本89份",
     tag: "线下61份 + 微信访谈28份",
-    color: "blue",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
     items: [
       { status: "done", text: "89%受访主体表达对法律服务的明确需求" },
@@ -54,7 +51,6 @@ const researchData = [
     title: "团队能力评估",
     subtitle: "诚实评估 · 持续提升",
     tag: "能力边界透明化",
-    color: "amber",
     image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
     items: [
       { status: "done", text: "合同模板起草与审查（法学院专业能力，有执业律师指导）" },
@@ -68,29 +64,27 @@ const researchData = [
   },
 ];
 
-const statusIcon = {
-  done: <CheckCircle className="w-3.5 h-3.5 text-green-400 shrink-0 mt-0.5" />,
-  gap:  <XCircle className="w-3.5 h-3.5 text-red-400 shrink-0 mt-0.5" />,
-  plan: <Clock className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />,
-};
+function StatusIcon({ status }: { status: string }) {
+  if (status === "done") return <CheckCircle className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: "var(--accent-light)" }} />;
+  if (status === "gap")  return <XCircle className="w-3.5 h-3.5 text-red-400 shrink-0 mt-0.5" />;
+  return <Clock className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />;
+}
 
 export function ResearchSection() {
   return (
-    <section id="research" className="section-pad bg-[#050a05] relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid-dark bg-grid opacity-50" />
-
+    <section id="research" className="section-pad relative overflow-hidden" style={{ background: "var(--bg-base)" }}>
       <div className="relative container-xl">
         {/* Header */}
         <div className="max-w-2xl mb-16">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-px bg-green-500" />
-            <span className="text-green-400 text-xs font-bold uppercase tracking-widest">实地调研报告</span>
+            <div className="w-8 h-px" style={{ background: "var(--accent)" }} />
+            <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "var(--accent)" }}>实地调研报告</span>
           </div>
-          <h2 className="text-5xl font-black text-white tracking-tight mb-4">
+          <h2 className="text-5xl font-black tracking-tight mb-4" style={{ color: "var(--text-primary)" }}>
             我们真的<br />
             <span className="text-gradient">去走访了</span>
           </h2>
-          <p className="text-white/60 text-lg leading-relaxed">
+          <p className="text-lg leading-relaxed" style={{ color: "var(--text-secondary)" }}>
             项目组已赴蔡甸、洪山、黄陂等地开展实地调研，以下是真实发现——包括现有保护措施、待完善之处，以及客户群体的真实反馈。
           </p>
         </div>
@@ -98,15 +92,15 @@ export function ResearchSection() {
         {/* Stats strip */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
           {[
-            { n: "3家", label: "莲藕合作社走访", sub: "收集侵权案例11件" },
-            { n: "8户", label: "菜薹种植户访谈", sub: "电商冒用地标问题突出" },
-            { n: "14家", label: "黄陂文旅经营者", sub: "安全合规意识薄弱" },
-            { n: "89份", label: "有效调研问卷", sub: "89%表达明确服务需求" },
+            { n: "3家",  label: "莲藕合作社走访",   sub: "收集侵权案例11件" },
+            { n: "8户",  label: "菜薹种植户访谈",   sub: "电商冒用地标问题突出" },
+            { n: "14家", label: "黄陂文旅经营者",   sub: "安全合规意识薄弱" },
+            { n: "89份", label: "有效调研问卷",     sub: "89%表达明确服务需求" },
           ].map(s => (
             <div key={s.label} className="glass rounded-xl p-4">
-              <div className="text-2xl font-black text-green-400 mb-1">{s.n}</div>
-              <div className="text-sm font-semibold text-white/80 mb-0.5">{s.label}</div>
-              <div className="text-xs text-white/50">{s.sub}</div>
+              <div className="text-2xl font-black mb-1" style={{ color: "var(--accent)" }}>{s.n}</div>
+              <div className="text-sm font-semibold mb-0.5" style={{ color: "var(--text-primary)" }}>{s.label}</div>
+              <div className="text-xs" style={{ color: "var(--text-muted)" }}>{s.sub}</div>
             </div>
           ))}
         </div>
@@ -122,15 +116,15 @@ export function ResearchSection() {
                   alt={item.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover opacity-60 group-hover:opacity-75 group-hover:scale-105 transition-all duration-700"
+                  className="object-cover opacity-80 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0d140d]" />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent, color-mix(in srgb, var(--bg-base) 90%, transparent))" }} />
                 <div className="absolute bottom-4 left-5">
-                  <div className="text-2xl font-black text-white">{item.title}</div>
-                  <div className="text-white/60 text-sm">{item.subtitle}</div>
+                  <div className="text-2xl font-black" style={{ color: "var(--text-primary)" }}>{item.title}</div>
+                  <div className="text-sm" style={{ color: "var(--text-secondary)" }}>{item.subtitle}</div>
                 </div>
-                <div className="absolute top-4 right-4 px-2.5 py-1 glass rounded-full text-[10px] font-bold text-white/70">
+                <div className="absolute top-4 right-4 px-2.5 py-1 glass rounded-full text-[10px] font-bold" style={{ color: "var(--text-secondary)" }}>
                   {item.tag}
                 </div>
               </div>
@@ -139,15 +133,15 @@ export function ResearchSection() {
               <div className="p-5 space-y-2.5">
                 {item.items.map((it, i) => (
                   <div key={i} className="flex items-start gap-2.5">
-                    {statusIcon[it.status as keyof typeof statusIcon]}
-                    <span className="text-sm text-white/75 leading-relaxed">{it.text}</span>
+                    <StatusIcon status={it.status} />
+                    <span className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>{it.text}</span>
                   </div>
                 ))}
 
                 {item.quote && (
-                  <blockquote className="mt-4 pl-4 border-l-2 border-green-500/40 py-1">
-                    <p className="text-sm text-white/60 italic leading-relaxed">&ldquo;{item.quote}&rdquo;</p>
-                    <p className="text-xs text-green-400/90 font-semibold mt-1.5">—— {item.quoteFrom}</p>
+                  <blockquote className="mt-4 pl-4 py-1" style={{ borderLeft: "2px solid color-mix(in srgb, var(--accent) 40%, transparent)" }}>
+                    <p className="text-sm italic leading-relaxed" style={{ color: "var(--text-secondary)" }}>&ldquo;{item.quote}&rdquo;</p>
+                    <p className="text-xs font-semibold mt-1.5" style={{ color: "var(--accent)" }}>—— {item.quoteFrom}</p>
                   </blockquote>
                 )}
               </div>

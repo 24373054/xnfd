@@ -8,23 +8,23 @@ export const metadata: Metadata = {
 
 export default function RightsPage() {
   return (
-    <div className="min-h-screen bg-[#050a05] pt-24 pb-20 relative overflow-hidden">
+    <div className="min-h-screen pt-24 pb-20 relative overflow-hidden" style={{ background: "var(--bg-base)" }}>
       <div className="absolute inset-0 bg-grid-green bg-grid opacity-30" />
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-green-600/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-96 h-96 rounded-full blur-3xl pointer-events-none" style={{ background: "color-mix(in srgb, var(--accent) 5%, transparent)" }} />
 
       <div className="relative container-xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left info */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-px bg-green-500" />
-              <span className="text-green-400 text-xs font-bold uppercase tracking-widest">维权绿色通道</span>
+              <div className="w-8 h-px" style={{ background: "var(--accent)" }} />
+              <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "var(--accent)" }}>维权绿色通道</span>
             </div>
-            <h1 className="text-5xl font-black text-white tracking-tight mb-5">
+            <h1 className="text-5xl font-black tracking-tight mb-5" style={{ color: "var(--text-primary)" }}>
               提交<br />
               <span className="text-gradient">维权申请</span>
             </h1>
-            <p className="text-white/40 text-lg leading-relaxed mb-10">
+            <p className="text-lg leading-relaxed mb-10" style={{ color: "var(--text-secondary)" }}>
               1个工作日内专人响应，请如实填写以便我们快速处理。
             </p>
 
@@ -35,12 +35,12 @@ export default function RightsPage() {
                 { icon: Phone, title: "全程陪同协助", desc: "从证据收集到投诉全程支持" },
               ].map(item => (
                 <div key={item.title} className="flex gap-4 p-4 glass rounded-xl">
-                  <div className="w-10 h-10 bg-green-500/10 border border-green-500/20 rounded-lg flex items-center justify-center shrink-0">
-                    <item.icon className="w-4 h-4 text-green-400" />
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style={{ background: "color-mix(in srgb, var(--accent) 10%, transparent)", border: "1px solid color-mix(in srgb, var(--accent) 20%, transparent)" }}>
+                    <item.icon className="w-4 h-4" style={{ color: "var(--accent)" }} />
                   </div>
                   <div>
-                    <div className="font-semibold text-white text-sm mb-0.5">{item.title}</div>
-                    <div className="text-xs text-white/40">{item.desc}</div>
+                    <div className="font-semibold text-sm mb-0.5" style={{ color: "var(--text-primary)" }}>{item.title}</div>
+                    <div className="text-xs" style={{ color: "var(--text-muted)" }}>{item.desc}</div>
                   </div>
                 </div>
               ))}
